@@ -3,10 +3,10 @@ package model;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class AutomaticGenerationNumber {
+public class SimulatedLottoNumber {
     private final Set<Integer> simulationNumbers;
 
-    public AutomaticGenerationNumber() {
+    public SimulatedLottoNumber() {
         this.simulationNumbers = generateSimulationNumbers();
     }
 

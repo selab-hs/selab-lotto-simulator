@@ -1,4 +1,4 @@
-import model.SimulationNumbers;
+import model.SimulatedLotto;
 import model.WinningNumber;
 import run.ComparisonNumbers;
 import view.InputValue;
@@ -9,7 +9,7 @@ public class LottoSimulator {
 
     public static void main(String[] args) {
         OutputScreen outputConsole = new OutputScreen();
-        InputValue inputConsole = new InputValue();
+        InputValue inputConsole = new InputValue(outputConsole);
 
         outputConsole.runSimulator();
         int runNumber = inputConsole.inputStartNumber();
@@ -19,13 +19,13 @@ public class LottoSimulator {
 
             outputConsole.receivedInputNumber();
             int inputLoopNumber = inputConsole.inputSimulationLoopNumber();
-            SimulationNumbers simulationNumber =new SimulationNumbers(inputLoopNumber);
+            SimulatedLotto simulatedLotto = new SimulatedLotto(inputLoopNumber);
 
             outputConsole.outputWinningNumber(winningNumber.getNumbers(), winningNumber.getBonusNumber());
-            ComparisonNumbers comparisonNumbers = new ComparisonNumbers(winningNumber, simulationNumber);
+            ComparisonNumbers comparisonNumbers = new ComparisonNumbers(winningNumber, simulatedLotto);
 
-            outputConsole.outputSimulatorResult();
-
+            outputConsole.outputSimulatorResult(simulatedLotto, comparisonNumbers);
+            main(args);
         }
 
         if (runNumber == SIMULATOR_END) {

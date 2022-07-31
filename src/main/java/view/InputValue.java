@@ -4,13 +4,19 @@ import java.util.Scanner;
 
 public class InputValue {
     private final static Scanner scanner = new Scanner(System.in);
+    private final static int MAX_SIMULATION = 100000;
+    private final OutputScreen outputScreen;
+
+    public InputValue(OutputScreen outputScreen){
+        this.outputScreen = outputScreen;
+    }
 
     public int inputStartNumber() {
         int number = inputNumber();
         if (validateStartNumber(number)) {
             return number;
         }
-        new OutputScreen().inputError();
+        outputScreen.inputError();
         return inputStartNumber();
     }
 
@@ -19,7 +25,7 @@ public class InputValue {
         if (validateSimulationRunNumber(number)) {
             return number;
         }
-        new OutputScreen().inputError();
+        outputScreen.inputError();
         return inputSimulationLoopNumber();
     }
 
@@ -27,7 +33,7 @@ public class InputValue {
         try {
             return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
-            new OutputScreen().inputError();
+            outputScreen.inputError();
             return inputNumber();
         }
     }
@@ -37,6 +43,6 @@ public class InputValue {
     }
 
     private boolean validateSimulationRunNumber(int number) {
-        return number >= 0 && number <= 100;
+        return number >= 0 && number <= MAX_SIMULATION;
     }
 }

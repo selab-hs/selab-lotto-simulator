@@ -23,7 +23,7 @@ public class WinningNumber {
     private int generateWinningBonusNumber() {
         int bonusNumber = (int) (Math.random() * 45 + 1);
         if (winningNumbers.contains(bonusNumber)) {
-            generateWinningBonusNumber();
+            return generateWinningBonusNumber();
         }
         return bonusNumber;
     }

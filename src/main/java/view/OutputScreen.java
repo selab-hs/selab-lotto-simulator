@@ -1,10 +1,10 @@
 package view;
 
 import model.SimulatedLotto;
-import model.SimulatedLottoNumber;
 import run.ComparisonNumbers;
 
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class OutputScreen {
     public void runSimulator() {
@@ -19,7 +19,7 @@ public class OutputScreen {
     }
 
     public void inputError() {
-        System.out.println("잘못된 입력요청 -> 다시 입력해주세요 : ");
+        System.out.print("잘못된 입력요청 -> 다시 입력해주세요 : ");
     }
 
     public void outputWinningNumber(Set<Integer> winningNumbers, int winningBonusNumber) {
@@ -31,15 +31,13 @@ public class OutputScreen {
     }
 
     public void outputSimulatorResult(SimulatedLotto simulatedLotto, ComparisonNumbers comparisonNumbers) {
-        int i = 0;
+        AtomicInteger counter = new AtomicInteger(0);
         System.out.println("********* 자동 생성 번호 *********");
-        for (SimulatedLottoNumber SimulatedLottoNumber : simulatedLotto.getSimulationLotto()) {
-            for (int number : SimulatedLottoNumber.getNumbers()) {
-                System.out.print(number + " ");
-            }
-            System.out.println("-> " + comparisonNumbers.getSimulationLottoResult().get(i));
-            i++;
-        }
+        simulatedLotto.getSimulationLotto().stream()
+                .forEach((value) -> {
+                    System.out.println(value.getNumbers() + " -> "
+                            + comparisonNumbers.getSimulationLottoResult().get(counter.getAndIncrement()));
+                });
         System.out.println("*******************************");
     }
 

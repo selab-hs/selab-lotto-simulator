@@ -5,7 +5,7 @@ import view.InputValue;
 import view.OutputScreen;
 
 public class LottoSimulator {
-    private final static int SIMULATOR_RUN = 1, SIMULATOR_END = 2, SYSTEM_EXIT = 0;
+    public final static int SIMULATOR_RUN = 1, SIMULATOR_END = 2, SYSTEM_EXIT = 0;
 
     public static void main(String[] args) {
         OutputScreen outputConsole = new OutputScreen();

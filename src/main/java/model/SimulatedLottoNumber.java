@@ -1,24 +1,25 @@
 package model;
 
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SimulatedLottoNumber {
-    private final Set<Integer> simulationNumbers;
+    private final List<Integer> simulationNumbers;
 
     public SimulatedLottoNumber() {
         this.simulationNumbers = generateSimulationNumbers();
     }
 
-    private Set<Integer> generateSimulationNumbers() {
-        Set<Integer> simulationNumbers = new TreeSet<>();
-        while (simulationNumbers.size() < 6) {
-            simulationNumbers.add((int) (Math.random() * 45 + 1));
-        }
-        return simulationNumbers;
+    private List<Integer> generateSimulationNumbers() {
+        return Stream.generate(() -> (int) (Math.random() * 45 + 1))
+                .distinct()
+                .limit(6)
+                .sorted()
+                .collect(Collectors.toList());
     }
 
-    public Set<Integer> getNumbers() {
+    public List<Integer> getNumbers() {
         return simulationNumbers;
     }
 }

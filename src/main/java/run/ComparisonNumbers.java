@@ -2,6 +2,7 @@ package run;
 
 import model.SimulatedLotto;
 import model.WinningNumber;
+import model.WinningResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,35 +18,29 @@ public class ComparisonNumbers {
         List<String> simulationResults = new ArrayList<>();
 
         for (int i = 0; i < simulatedLotto.getSimulationLotto().size(); i++) {
-            int winningResult = 0;
-            boolean bonusWinning = simulatedLotto.getSimulationLotto().get(i).getNumbers().contains(winningNumber.getBonusNumber());
-            for (Integer integer : simulatedLotto.getSimulationLotto().get(i).getNumbers()) {
-                if (winningNumber.getNumbers().contains(integer)) {
-                    winningResult++;
-                }
-            }
+            List<Integer> numbers = simulatedLotto.getSimulationLotto().get(i).getNumbers();
 
-            simulationResults.add(toStringResult(winningResult, bonusWinning));
+            simulationResults.add(toStringResult(getWinningResult(numbers, winningNumber), getBonusWinningResult(numbers, winningNumber)));
         }
         return simulationResults;
     }
 
-    private String toStringResult(int winningNumber, boolean bonusWinning) {
-        switch (winningNumber) {
-            case 6:
-                return "1등";
-            case 5:
-                if (bonusWinning) {
-                    return "2등";
-                }
-                return "3등";
-            case 4:
-                return "4등";
-            case 3:
-                return "5등";
-            default:
-                return "낙첨";
+    private int getWinningResult(List<Integer> simulatedLottoNumbers, WinningNumber winningNumber) {
+        int winningResult = 0;
+        for (Integer lottoNumber : simulatedLottoNumbers) {
+            if (winningNumber.getNumbers().contains(lottoNumber)) {
+                winningResult++;
+            }
         }
+        return winningResult;
+    }
+
+    private boolean getBonusWinningResult(List<Integer> simulatedLottoNumbers, WinningNumber winningNumber) {
+        return simulatedLottoNumbers.contains(winningNumber.getBonusNumber());
+    }
+
+    private String toStringResult(int winningNumber, boolean bonusWinning) {
+        return WinningResult.getResult(winningNumber, bonusWinning);
     }
 
     public List<String> getSimulationLottoResult() {

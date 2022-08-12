@@ -2,13 +2,13 @@ import model.SimulatedLotto;
 import model.WinningNumber;
 import run.ComparisonNumbers;
 import view.InputValue;
-import view.OutputScreen;
+import view.OutputView;
 
 public class LottoSimulator {
     public final static int SIMULATOR_RUN = 1, SIMULATOR_END = 2, SYSTEM_EXIT = 0;
 
     public static void main(String[] args) {
-        OutputScreen outputConsole = new OutputScreen();
+        OutputView outputConsole = new OutputView();
         InputValue inputConsole = new InputValue(outputConsole);
 
         outputConsole.runSimulator();

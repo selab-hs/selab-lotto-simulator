@@ -6,7 +6,7 @@ import run.ComparisonNumbers;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class OutputScreen {
+public class OutputView {
     public void runSimulator() {
         System.out.println("**** Selab Lotto Simulator ****");
         System.out.println("1. 시작");
@@ -31,12 +31,13 @@ public class OutputScreen {
     }
 
     public void outputSimulatorResult(SimulatedLotto simulatedLotto, ComparisonNumbers comparisonNumbers) {
-        AtomicInteger counter = new AtomicInteger(0);
+        AtomicInteger i = new AtomicInteger();
         System.out.println("********* 자동 생성 번호 *********");
+
         simulatedLotto.getSimulationLotto().stream()
                 .forEach((value) -> {
                     System.out.println(value.getNumbers() + " -> "
-                            + comparisonNumbers.getSimulationLottoResult().get(counter.getAndIncrement()));
+                            + comparisonNumbers.getSimulationLottoResult().get(i.getAndIncrement()));
                 });
         System.out.println("*******************************");
     }

@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class InputValue {
     private final static Scanner scanner = new Scanner(System.in);
     private final static int MAX_SIMULATION = 1000;
-    private final OutputScreen outputScreen;
+    private final OutputView outputScreen;
 
-    public InputValue(OutputScreen outputScreen) {
+    public InputValue(OutputView outputScreen) {
         this.outputScreen = outputScreen;
     }
 

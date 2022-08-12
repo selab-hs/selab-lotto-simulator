@@ -15,7 +15,7 @@ public class ExampleTest {
     @Test
     public void 성공_테스트() {
 //        IntStream it = new Random.range(1,46).ints(6).forEach(System.out::println);
-
+//
 //        // given
 //        String n = "10";
 //        example = new Example(n);

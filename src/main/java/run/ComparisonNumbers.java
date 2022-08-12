@@ -4,8 +4,8 @@ import model.SimulatedLotto;
 import model.WinningNumber;
 import model.WinningResult;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ComparisonNumbers {
     private final List<String> simulationResults;
@@ -15,24 +15,17 @@ public class ComparisonNumbers {
     }
 
     private List<String> compareRepeatedResult(WinningNumber winningNumber, SimulatedLotto simulatedLotto) {
-        List<String> simulationResults = new ArrayList<>();
-
-        for (int i = 0; i < simulatedLotto.getSimulationLotto().size(); i++) {
-            List<Integer> numbers = simulatedLotto.getSimulationLotto().get(i).getNumbers();
-
-            simulationResults.add(toStringResult(getWinningResult(numbers, winningNumber), getBonusWinningResult(numbers, winningNumber)));
-        }
-        return simulationResults;
+        return simulatedLotto.getSimulationLotto().stream()
+                .map(value -> toStringResult(getWinningResult(value.getNumbers(), winningNumber), getBonusWinningResult(value.getNumbers(), winningNumber)))
+                .collect(Collectors.toList());
     }
 
     private int getWinningResult(List<Integer> simulatedLottoNumbers, WinningNumber winningNumber) {
-        int winningResult = 0;
-        for (Integer lottoNumber : simulatedLottoNumbers) {
-            if (winningNumber.getNumbers().contains(lottoNumber)) {
-                winningResult++;
-            }
-        }
-        return winningResult;
+        return Math.toIntExact(
+                simulatedLottoNumbers.stream()
+                        .filter((value) -> winningNumber.getNumbers().contains(value))
+                        .count()
+        );
     }
 
     private boolean getBonusWinningResult(List<Integer> simulatedLottoNumbers, WinningNumber winningNumber) {

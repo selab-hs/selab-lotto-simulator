@@ -1,7 +1,8 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SimulatedLotto {
 
@@ -12,11 +13,9 @@ public class SimulatedLotto {
     }
 
     private List<SimulatedLottoNumber> generateRandomLotto(int number) {
-        List<SimulatedLottoNumber> simulationNumbers = new ArrayList<>();
-        for (int i = 0; i < number; i++) {
-            simulationNumbers.add(new SimulatedLottoNumber());
-        }
-        return simulationNumbers;
+        return Stream.generate(SimulatedLottoNumber::new)
+                .limit(number)
+                .collect(Collectors.toList());
     }
 
     public List<SimulatedLottoNumber> getSimulationLotto() {

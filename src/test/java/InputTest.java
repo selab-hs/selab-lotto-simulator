@@ -1,30 +1,33 @@
-import model.SimulatedLotto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import view.InputValue;
+import view.OutputView;
 
 public class InputTest {
 
     @Test
-    public void SimulatedLottoCreateTest() {
+    public void startNumberInputTest(){
         // given
-        int number= 10;
+        OutputView outputView = new OutputView();
+        InputValue inputView = new InputValue(outputView);
 
         // when
-        SimulatedLotto testLotto = new SimulatedLotto(number);
+        int result = inputView.inputStartNumber(2);
 
         // then
-        assertEquals(testLotto.getSimulationLotto().size(), 10);
+        Assertions.assertTrue(result == 1 || result == 2);
     }
 
     @Test
-    public void failTest() {
+    public void simulationLoopNumberInputTest(){
         // given
-        String n = "나숫자 아닌디ㅋ";
+        OutputView outputView = new OutputView();
+        InputValue inputView = new InputValue(outputView);
 
-        // when, then
-        Assertions.assertThrows(NumberFormatException.class, () -> new SimulatedLotto(Integer.parseInt(n)));
+        // when
+        int result = inputView.inputSimulationLoopNumber(1000);
+
+        // then
+        Assertions.assertTrue(result >= 0 && result <= 1000);
     }
 }

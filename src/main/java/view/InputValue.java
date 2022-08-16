@@ -4,29 +4,27 @@ import java.util.Scanner;
 
 public class InputValue {
     private final static Scanner scanner = new Scanner(System.in);
-    private final static int MAX_SIMULATION = 1000;
+    public final static int MAX_SIMULATION = 1000;
     private final OutputView outputScreen;
 
     public InputValue(OutputView outputScreen) {
         this.outputScreen = outputScreen;
     }
 
-    public int inputStartNumber() {
-        int number = inputNumber();
+    public int inputStartNumber(int number) {
         if (validateStartNumber(number)) {
             return number;
         }
         outputScreen.inputError();
-        return inputStartNumber();
+        return inputStartNumber(inputNumber());
     }
 
-    public int inputSimulationLoopNumber() {
-        int number = inputNumber();
+    public int inputSimulationLoopNumber(int number) {
         if (validateSimulationRunNumber(number)) {
             return number;
         }
         outputScreen.inputError();
-        return inputSimulationLoopNumber();
+        return inputSimulationLoopNumber(inputNumber());
     }
 
     public int inputNumber() {

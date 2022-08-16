@@ -12,13 +12,13 @@ public class LottoSimulator {
         InputValue inputConsole = new InputValue(outputConsole);
 
         outputConsole.runSimulator();
-        int runNumber = inputConsole.inputStartNumber();
+        int runNumber = inputConsole.inputStartNumber(inputConsole.inputNumber());
 
         if (runNumber == SIMULATOR_RUN) {
             WinningNumber winningNumber = new WinningNumber();
 
             outputConsole.receivedInputNumber();
-            int inputLoopNumber = inputConsole.inputSimulationLoopNumber();
+            int inputLoopNumber = inputConsole.inputSimulationLoopNumber(inputConsole.inputNumber());
             SimulatedLotto simulatedLotto = new SimulatedLotto(inputLoopNumber);
 
             outputConsole.outputWinningNumber(winningNumber.getNumbers(), winningNumber.getBonusNumber());

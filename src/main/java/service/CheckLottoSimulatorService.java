@@ -32,8 +32,6 @@ public class CheckLottoSimulatorService {
     bonusMatchCountCheck(answers, challenges);
   }
 
-
-
   public void resetLottoCheckCount(){
     lottoCheckCount = Number.ZERO;
   }

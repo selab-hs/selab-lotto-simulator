@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateUserNumbers extends CreateNumbersService {
+public class CreateUserNumbers extends CreateNumbers {
 
   @Override
   public List<Integer> getNumbers(int length) {

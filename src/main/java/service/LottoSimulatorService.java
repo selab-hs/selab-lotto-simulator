@@ -1,7 +1,7 @@
 package service;
 
 import java.util.List;
-import model.CreateLottosNumbers;
+import model.CreateLottoNumbers;
 import model.CreateUserNumbers;
 import model.Lotto;
 import model.User;
@@ -11,10 +11,10 @@ public class LottoSimulatorService {
   private final LottoSimulatorRepository lottoSimulatorRepository = new LottoSimulatorRepository();
   private final CheckLottoSimulatorService checkLottoSimulatorService = new CheckLottoSimulatorService();
   private final CreateUserNumbers createUserNumbers = new CreateUserNumbers();
-  private final CreateLottosNumbers createLottosNumbers = new CreateLottosNumbers();
+  private final CreateLottoNumbers createLottoNumbers = new CreateLottoNumbers();
 
   public void setLottoNumbers(){
-    lottoSimulatorRepository.setLottoNumbers(createLottosNumbers.createLotto());
+    lottoSimulatorRepository.setLottoNumbers(createLottoNumbers.createLotto());
   }
 
   public void setUserNumbers(){

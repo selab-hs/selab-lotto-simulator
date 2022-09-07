@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateLottosNumbers extends CreateNumbersService {
+public class CreateLottoNumbers extends CreateNumbers {
 
   @Override
   public List<Integer> getNumbers(int length) {

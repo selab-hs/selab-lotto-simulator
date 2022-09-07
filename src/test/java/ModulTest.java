@@ -1,4 +1,4 @@
-import model.CreateLottosNumbers;
+import model.CreateLottoNumbers;
 import model.CreateUserNumbers;
 import org.junit.jupiter.api.Test;
 import repositroy.LottoSimulatorRepository;
@@ -30,7 +30,7 @@ public class ModulTest {
     @Test
     public void createLottoNumbersTest() throws Exception{
       //given
-      CreateLottosNumbers createLottosNumbers = new CreateLottosNumbers();
+      CreateLottoNumbers createLottosNumbers = new CreateLottoNumbers();
       //when
       createLottosNumbers.createLottos();
       //tnen

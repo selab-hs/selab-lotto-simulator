@@ -2,7 +2,7 @@ import model.CreateLottosNumbers;
 import model.CreateUserNumbers;
 import org.junit.jupiter.api.Test;
 import repositroy.LottoSimulatorRepository;
-import service.CheckLottoService;
+import service.CheckLottoSimulatorService;
 
 public class ModulTest {
 
@@ -10,7 +10,7 @@ public class ModulTest {
   public void  LottoCheck()throws Exception{
     //given
     LottoSimulatorRepository lottoSimulatorRepository = new LottoSimulatorRepository();
-    CheckLottoService checkLottoService = new CheckLottoService();
+    CheckLottoSimulatorService checkLottoService = new CheckLottoSimulatorService();
     //when
       checkLottoService.setLottoCheckCount(lottoSimulatorRepository.lottos(),lottoSimulatorRepository.users());
     //tnen

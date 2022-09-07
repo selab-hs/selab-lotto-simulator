@@ -1,6 +1,5 @@
-package service;
+package model;
 
-import domain.Number;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
@@ -8,10 +7,9 @@ import java.util.Random;
 
 public abstract class CreateNumbersService {
 
-  Random random = new Random();
-
   private int createNumber(){
-    return  random.nextInt(Number.MAX_NUMBER);
+    Random random = new Random();
+    return random.nextInt(Number.MAX_NUMBER);
   }
 
   private List<Integer> createNumbers(int length){

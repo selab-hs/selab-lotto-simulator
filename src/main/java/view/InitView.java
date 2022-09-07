@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class InitView {
   BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-  int option;
+  int orderNumber;
 
   public int startView() throws IOException {
 
@@ -20,11 +20,15 @@ public class InitView {
   public void lottoMenu(int initOrder) throws IOException {
     if (initOrder == 1) {
       System.out.print("시뮬레이션 할 복권 수를 입력하시오> ");
-      option = Integer.parseInt(bf.readLine());
+      orderNumber = Integer.parseInt(bf.readLine());
+    }
+    if(initOrder ==2){
+      System.out.println("종료");
+      System.exit(0);
     }
   }
 
-  public int getOption() {
-    return option;
+  public int getOrderNumber() {
+    return orderNumber;
   }
 }

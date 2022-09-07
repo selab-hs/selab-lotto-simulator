@@ -1,6 +1,6 @@
 package view;
 
-import domain.Number;
+import model.Number;
 import java.util.List;
 import model.Lotto;
 import model.User;
@@ -19,31 +19,25 @@ public class OutView {
     System.out.println("*******************************");
   }
 
-  public void rank(int lottoCheckNumber, List<User> initList){
+  public void rank(int lottoCheckNumber){
     switch (lottoCheckNumber){
       case 6:
-        numbersView(initList);
         System.out.println(" -> 1 등") ;
         break;
       case 5:
-        numbersView(initList);
         System.out.println(" -> 2 등") ;
         break;
       case 4:
-        numbersView(initList);
         System.out.println(" -> 3 등") ;
         break;
       case 3:
-        numbersView(initList);
         System.out.println(" -> 4 등") ;
         break;
       case 2:
-        numbersView(initList);
         System.out.println(" -> 5 등") ;
         break;
       case 1:
       case 0:
-        numbersView(initList);
         System.out.println(" -> 낙첨") ;
         break;
     }

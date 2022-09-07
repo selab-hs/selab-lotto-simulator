@@ -1,11 +1,11 @@
 package service;
 
-import domain.Number;
+import model.Number;
 import java.util.List;
 import model.Lotto;
 import model.User;
 
-public class CheckLottoService {
+public class CheckLottoSimulatorService {
 
   private int lottoCheckCount = Number.ZERO;
 
@@ -19,8 +19,8 @@ public class CheckLottoService {
 
   private void bonusMatchCountCheck(List<Lotto> answers, List<User> challenges){
     if (lottoCheckCount != (Number.USER_MAX_LENGTH)) {
-      for (int i = Number.ZERO; i < Number.USER_MAX_LENGTH; i++) {
-        if (challenges.get(i).getUser() == answers.get(Number.USER_MAX_LENGTH).getLotto()) {
+      for (User member : challenges) {
+        if (member.getUser() == answers.get(Number.USER_MAX_LENGTH).getLotto()) {
           lottoCheckCount++;
         }
       }

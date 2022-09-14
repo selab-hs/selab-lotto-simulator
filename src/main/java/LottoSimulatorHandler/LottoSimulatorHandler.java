@@ -20,7 +20,11 @@ public class LottoSimulatorHandler {
     answerPrint(lottoSimulatorController.getAnswer());
     outView.endResultView();
     outView.startResultView();
-    lottoSimulatorController.userNumbers(initView.getOrderNumber());
+    for(int i=0; i<initView.getOrderNumber();i++){
+      lottoSimulatorController.userNumbers();
+      rankPrint(lottoSimulatorController.getChallenger(), lottoSimulatorController.rank(lottoSimulatorController.getChallenger()));
+      lottoSimulatorController.resetMember();
+    }
     outView.endResultView();
   }
 

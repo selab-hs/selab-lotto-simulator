@@ -2,17 +2,13 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class CreateUserNumbers extends CreateNumbers {
-
-  @Override
-  public List<Integer> getNumbers(int length) {
-    return super.getNumbers(length);
-  }
+public class CreateUserNumbers implements CreateNumbers {
 
   public List<User> createUserNumbers(){
     List<User> userNumbers = new ArrayList<>();
-    List<Integer> members = new ArrayList<>(getNumbers(Number.USER_MAX_LENGTH));
+    List<Integer> members = new ArrayList<>(createNumbers(Number.USER_MAX_LENGTH, new Random()));
     for(int member:members){
       userNumbers.add(new User(member));
     }

@@ -14,7 +14,8 @@ public class LottoSimulatorHandler {
   OutView outView = new OutView();
 
   public void viewResolver() throws IOException {
-    lottoSimulatorController.runLottoSimulator(start());
+    start();
+    lottoSimulatorController.runLottoSimulator();
     outView.answer();
     answerPrint(lottoSimulatorController.getAnswer());
     outView.endResultView();
@@ -23,9 +24,8 @@ public class LottoSimulatorHandler {
     outView.endResultView();
   }
 
-  public int start() throws IOException {
+  public void start() throws IOException {
     initView.lottoMenu(initView.startView());
-    return initView.getOrderNumber();
   }
 
   public void rankPrint(List<User> userNumbers, int rank){
@@ -38,7 +38,7 @@ public class LottoSimulatorHandler {
   }
 
   public void startLotto() throws IOException {
-    for(;;){
+    while(true){
       viewResolver();
     }
   }

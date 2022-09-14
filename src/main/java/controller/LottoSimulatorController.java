@@ -11,7 +11,7 @@ public class LottoSimulatorController {
   private final LottoSimulatorService lottoSimulatorService = new LottoSimulatorService();
   private final LottoSimulatorHandler lottoSimulatorHandler = new LottoSimulatorHandler();
 
-  public void runLottoSimulator(int orderNumber){
+  public void runLottoSimulator(){
     lottoSimulatorService.setLottoNumbers();
   }
 
@@ -27,5 +27,4 @@ public class LottoSimulatorController {
   public List<Lotto> getAnswer(){
     return lottoSimulatorService.getCreateLottoNumbers();
   }
-
 }

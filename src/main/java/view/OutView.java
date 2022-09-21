@@ -1,68 +1,103 @@
 package view;
 
-import model.Number;
 import java.util.List;
-import model.Lotto;
-import model.User;
+import model.Number;
 
 public class OutView {
-  public void answer(){
-    System.out.println("*********** 당첨 번호 ***********");
-  }
 
+  public static StringBuilder userNumberPrintBuilder = new StringBuilder();
+  public static StringBuilder answerNumberPrintBuilder = new StringBuilder();
+  public static StringBuilder rankNumberPrintBuilder = new StringBuilder();
 
-  public void startResultView(){
+  public void startResultView() {
     System.out.println("********* 자동 생성 번호 *********");
   }
 
-  public void endResultView(){
-    System.out.println("*******************************");
+  public void endResultView() {
+    System.out.println("********************************");
   }
 
-  public void rank(int lottoCheckNumber){
-    switch (lottoCheckNumber){
+  private void rank(int lottoCheckNumber) {
+    switch (lottoCheckNumber) {
       case 6:
-        System.out.println(" -> 1 등") ;
+        rankNumberPrintBuilder.append(" -> 1 등");
         break;
       case 5:
-        System.out.println(" -> 2 등") ;
+        rankNumberPrintBuilder.append(" -> 2 등");
         break;
       case 4:
-        System.out.println(" -> 3 등") ;
+        rankNumberPrintBuilder.append(" -> 3 등");
         break;
       case 3:
-        System.out.println(" -> 4 등") ;
+        rankNumberPrintBuilder.append(" -> 4 등");
         break;
       case 2:
-        System.out.println(" -> 5 등") ;
+        rankNumberPrintBuilder.append(" -> 5 등");
         break;
       case 1:
       case 0:
-        System.out.println(" -> 낙첨") ;
+        rankNumberPrintBuilder.append(" -> 낙첨");
         break;
     }
   }
 
-  public void numbersView(List<User> initList){
-    for (User user : initList) {
-      if(user.getUser()<10){
-        System.out.print(user.getUser() + "  ");
+  private void numbersView(List<Integer> initList) {
+    for (Integer number : initList) {
+      if (number < 10) {
+        userNumberPrintBuilder
+            .append(number)
+            .append("   ");
       }
-      if(user.getUser()>=10){
-        System.out.print(user.getUser() + " ");
+      if (number >=10) {
+        userNumberPrintBuilder
+            .append(number)
+            .append("  ");
       }
-
     }
   }
-  public void answerView(List<Lotto> initList){
-    for(int i=0; i<initList.size()-1;i++){
-      if(initList.get(i).getLotto()<10){
-        System.out.print(initList.get(i).getLotto() + "  ");
+
+  private void answerView(List<Integer> initList) {
+    for (int i = 0; i < initList.size() - 1; i++) {
+      if ((initList.get(i) < 10)) {
+        answerNumberPrintBuilder
+            .append(initList.get(i))
+            .append("   ");
       }
-      if(initList.get(i).getLotto()>=10){
-        System.out.print(initList.get(i).getLotto() + " ");
+      if ((initList.get(i)) >= 10) {
+        answerNumberPrintBuilder
+            .append(initList.get(i))
+            .append("  ");
       }
     }
-    System.out.println("+ "+initList.get(initList.size()- Number.ONE).getLotto() +" ");
+    answerNumberPrintBuilder.append("+ ")
+        .append(
+            initList.get(initList.size() - Number.ONE)
+        ).append(" ");
+  }
+
+
+  public void answerNumberView(List<Integer> answer) {
+    System.out.println("*********** 당첨 번호 ***********");
+    answerView(answer);
+    System.out.println(answerNumberPrintBuilder);
+    answerNumberPrintBuilder.setLength(0);
+    endResultView();
+  }
+
+  public void userNumberView(List<Integer> userNumbers){
+    numbersView(userNumbers);
+    System.out.print(userNumberPrintBuilder);
+    userNumberPrintBuilder.setLength(0);
+  }
+
+  public void rankNumberView(int lottoCheckResult){
+    rank(lottoCheckResult);
+    System.out.println(rankNumberPrintBuilder);
+    rankNumberPrintBuilder.setLength(0);
+  }
+
+  public void duplicatedCheckNumberView(List<Integer> userNumbers,int lottoCheckResult) {
+    userNumberView(userNumbers);
+    rankNumberView(lottoCheckResult);
   }
 }

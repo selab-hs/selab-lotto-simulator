@@ -1,42 +1,42 @@
 package service;
 
-import model.Number;
+import java.util.ArrayList;
 import java.util.List;
-import model.Lotto;
-import model.User;
+import java.util.Objects;
+import model.Number;
 
 public class CheckLottoSimulatorService {
 
-  private int lottoCheckCount = Number.ZERO;
+  public static int lottoCheckCount = Number.ZERO;
 
-  private void matchCountCheck(List<Lotto> answers, List<User> challenges) {
+  private void matchCountCheck(List<Integer> answers, List<Integer> challenges) {
     for (int i = Number.ZERO; i < Number.USER_MAX_LENGTH; i++) {
-      if (answers.get(i).getLotto() == challenges.get(i).getUser()) {
+      if (Objects.equals(answers.get(i), challenges.get(i))) {
         lottoCheckCount++;
       }
     }
   }
 
-  private void bonusMatchCountCheck(List<Lotto> answers, List<User> challenges){
-    if (lottoCheckCount != (Number.USER_MAX_LENGTH)) {
-      for (User member : challenges) {
-        if (member.getUser() == answers.get(Number.USER_MAX_LENGTH).getLotto()) {
-          lottoCheckCount++;
-        }
-      }
+  private void bonusMatchCountCheck(List<Integer> answers, List<Integer> challenges) {
+    if ((lottoCheckCount != (Number.USER_MAX_LENGTH)) &&
+        challenges.contains(answers.get(answers.size() - Number.ONE))) {
+      lottoCheckCount++;
     }
   }
 
-  public void setLottoCheckCount(List<Lotto> answers, List<User> challenges){
-    matchCountCheck(answers, challenges);
-    bonusMatchCountCheck(answers, challenges);
+  public void setLottoCheckCount(List<Integer> answers, List<Integer> challenges) {
+    List<Integer> duplicated = new ArrayList<>(challenges);
+    duplicated.retainAll(answers);
+    if (duplicated.size() > 1) {
+      matchCountCheck(answers, challenges);
+      bonusMatchCountCheck(answers, challenges);
+    }
+    if (duplicated.size() < 2) {
+      resetLottoCheckCount();
+    }
   }
 
-  public void resetLottoCheckCount(){
+  public void resetLottoCheckCount() {
     lottoCheckCount = Number.ZERO;
-  }
-
-  public int getLottoCheckCount() {
-    return lottoCheckCount;
   }
 }

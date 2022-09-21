@@ -3,8 +3,6 @@ package service;
 import java.util.List;
 import model.CreateLottoNumbers;
 import model.CreateUserNumbers;
-import model.Lotto;
-import model.User;
 import repositroy.LottoSimulatorRepository;
 
 public class LottoSimulatorService {
@@ -14,31 +12,28 @@ public class LottoSimulatorService {
   private final CreateLottoNumbers createLottoNumbers = new CreateLottoNumbers();
 
   public void setLottoNumbers(){
-    lottoSimulatorRepository.setLottoNumbers(createLottoNumbers.createLotto());
+    createLottoNumbers.createLotto();
   }
 
-  public void setUserNumbers(){
-    lottoSimulatorRepository.setUserNumbers(createUserNumbers.createUserNumbers());
-  }
-
-  public List<Lotto> getCreateLottoNumbers() {
+  public List<Integer> getCreateLottoNumbers() {
     return lottoSimulatorRepository.getLottoNumbers();
   }
 
-  public List<User> getCreateUserNumbers() {
+  public List<Integer> getCreateUserNumbers() {
     return lottoSimulatorRepository.getUserNumbers();
-  }
-
-  public void rank(List<Lotto> answer, List<User> challenger){
-    checkLottoSimulatorService.setLottoCheckCount(answer, challenger);
-  }
-
-  public int getLottoCheckNumber(){
-    return checkLottoSimulatorService.getLottoCheckCount();
   }
 
   public void resetUserNumbersAndLottoCheckNumber(){
     lottoSimulatorRepository.clearUserNumber();
     checkLottoSimulatorService.resetLottoCheckCount();
+  }
+
+  public void clearLottoNumbers(){
+    lottoSimulatorRepository.clearLottoNumber();
+  }
+
+  public void runCheckUserNumber(List<Integer> answer) {
+    createUserNumbers.createUserNumbers();
+    checkLottoSimulatorService.setLottoCheckCount(answer, getCreateUserNumbers());
   }
 }

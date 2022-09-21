@@ -2,30 +2,32 @@ package repositroy;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.Lotto;
-import model.User;
 
 public class LottoSimulatorRepository {
-  List<User> userNumbers = new ArrayList<>();
-  List<Lotto> lottoNumbers = new ArrayList<>();
+   private static final List<Integer> userNumbers = new ArrayList<>();
+   private static final List<Integer> lottoNumbers = new ArrayList<>();
 
-  public void setUserNumbers(List<User> numbers){
+  public void setUserNumbers(List<Integer> numbers){
     userNumbers.addAll(numbers);
   }
 
-  public void setLottoNumbers(List<Lotto> numbers){
+  public void setLottoNumbers(List<Integer> numbers){
     lottoNumbers.addAll(numbers);
   }
 
-  public List<Lotto> getLottoNumbers() {
+  public List<Integer> getLottoNumbers() {
     return lottoNumbers;
   }
 
-  public List<User> getUserNumbers() {
+  public List<Integer> getUserNumbers() {
     return userNumbers;
   }
 
   public void clearUserNumber(){
     userNumbers.clear();
+  }
+
+  public void clearLottoNumber(){
+    lottoNumbers.clear();
   }
 }

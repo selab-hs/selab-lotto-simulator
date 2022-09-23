@@ -11,27 +11,32 @@ public class CheckLottoSimulatorService {
 
   private void matchCountCheck(List<Integer> answers, List<Integer> challenges) {
     for (int i = Number.ZERO; i < Number.USER_MAX_LENGTH; i++) {
-      if (Objects.equals(answers.get(i), challenges.get(i))) {
+      if (answers.get(i).equals(challenges.get(i))) {
         lottoCheckCount++;
       }
     }
   }
 
   private void bonusMatchCountCheck(List<Integer> answers, List<Integer> challenges) {
-    if ((lottoCheckCount != (Number.USER_MAX_LENGTH)) &&
-        challenges.contains(answers.get(answers.size() - Number.ONE))) {
-      lottoCheckCount++;
+    if (lottoCheckCount != (Number.USER_MAX_LENGTH)) {
+      if(challenges.contains(answers.get(answers.size() - Number.ONE))){
+        lottoCheckCount++;
+      }
     }
   }
 
-  public void setLottoCheckCount(List<Integer> answers, List<Integer> challenges) {
+  private Integer duplicatedSize(List<Integer> challenges, List<Integer> answers){
     List<Integer> duplicated = new ArrayList<>(challenges);
     duplicated.retainAll(answers);
-    if (duplicated.size() > 1) {
+    return duplicated.size();
+  }
+
+  public void setLottoCheckCount(List<Integer> answers, List<Integer> challenges) {
+    if (duplicatedSize(challenges, answers)> 1) {
       matchCountCheck(answers, challenges);
       bonusMatchCountCheck(answers, challenges);
     }
-    if (duplicated.size() < 2) {
+    if (duplicatedSize(challenges, answers) <= 2) {
       resetLottoCheckCount();
     }
   }

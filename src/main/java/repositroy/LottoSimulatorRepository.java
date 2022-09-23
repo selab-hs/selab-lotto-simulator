@@ -1,5 +1,7 @@
 package repositroy;
 
+import static java.util.Collections.sort;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,10 +10,12 @@ public class LottoSimulatorRepository {
    private static final List<Integer> lottoNumbers = new ArrayList<>();
 
   public void setUserNumbers(List<Integer> numbers){
+    sort(numbers);
     userNumbers.addAll(numbers);
   }
 
   public void setLottoNumbers(List<Integer> numbers){
+    sort(numbers);
     lottoNumbers.addAll(numbers);
   }
 

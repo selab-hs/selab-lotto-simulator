@@ -18,7 +18,7 @@ public class LottoSimulatorMachine {
   }
 
   public void runSimulator() throws IOException {
-    for(;;){
+    while(true){
       initOrderNumber();
       lottoSimulatorController.runLottoSimulator();
       outView.startResultView();

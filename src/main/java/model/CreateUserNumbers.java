@@ -11,7 +11,8 @@ public class CreateUserNumbers implements CreateNumbers {
   public void createUserNumbers(){
     lottoSimulatorRepository.setUserNumbers(
         new ArrayList<>(
-            CreateNumbers.createNumbers(Number.USER_MAX_LENGTH, new Random())
+            CreateNumbers
+                .createNumbers(Number.USER_MAX_LENGTH, new Random())
         )
     );
     CreateNumbers.clearNumbers();

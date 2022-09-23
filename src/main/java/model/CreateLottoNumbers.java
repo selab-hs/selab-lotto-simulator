@@ -10,9 +10,10 @@ public class CreateLottoNumbers implements CreateNumbers {
 
   public void createLotto(){
     lottoSimulatorRepository.setLottoNumbers(
-        new ArrayList<>(
-            CreateNumbers.createNumbers(Number.LOTTO_MAX_LENGTH, new Random())
-        )
+      new ArrayList<>(
+          CreateNumbers
+              .createNumbers(Number.LOTTO_MAX_LENGTH, new Random())
+      )
     );
     CreateNumbers.clearNumbers();
   }

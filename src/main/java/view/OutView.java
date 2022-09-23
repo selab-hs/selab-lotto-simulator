@@ -75,7 +75,6 @@ public class OutView {
         ).append(" ");
   }
 
-
   public void answerNumberView(List<Integer> answer) {
     System.out.println("*********** 당첨 번호 ***********");
     answerView(answer);

@@ -7,17 +7,17 @@ import model.Number;
 import org.jetbrains.annotations.NotNull;
 
 public class InitView {
-  BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+  private final BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
   private int orderNumber;
 
   public int startView() throws IOException {
-    System.out.println("**** Selab Lotto Simulator ****");
-    System.out.println("1. 시작");
-    System.out.println("2. 종료");
-    System.out.print("메뉴를 입력하시오> ");
-    String init = bf.readLine();
-    initValidation(init);
-    return Integer.parseInt(init);
+      System.out.println("**** Selab Lotto Simulator ****");
+      System.out.println("1. 시작");
+      System.out.println("2. 종료");
+      System.out.print("메뉴를 입력하시오> ");
+      String init = bf.readLine();
+      initValidation(init);
+      return Integer.parseInt(init);
   }
 
   public void lottoMenu(int initOrder) throws IOException {

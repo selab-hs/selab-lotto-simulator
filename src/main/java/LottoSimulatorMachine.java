@@ -9,16 +9,20 @@ public class LottoSimulatorMachine {
   private final InitView initView = new InitView();
   private final OutView outView = new OutView();
 
-  private void initOrderNumber() throws IOException {
-    initView.lottoMenu(initView.startView());
+  private void initOrderNumber(){
+    try {
+      initView.lottoMenu(initView.startView());
+    } catch (IOException e) {
+      System.out.println("IOException이 발생했습니다.");
+    }
   }
 
   private int getLoopNumber() {
     return initView.getOrderNumber();
   }
 
-  public void runSimulator() throws IOException {
-    while(true){
+  public void runSimulator(){
+    while (true) {
       initOrderNumber();
       lottoSimulatorController.runLottoSimulator();
       outView.startResultView();

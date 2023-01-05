@@ -8,9 +8,9 @@ public class Lotto {
     public Lotto() {
         Set<Integer> nonDuplicateNumber = createNonDuplicateNumbers();
         Iterator<Integer> iterator = nonDuplicateNumber.iterator();
-        numbers.add(new Number(true,iterator.next()));
-        while (iterator.hasNext()){
-            numbers.add(new Number(false,iterator.next()));
+        numbers.add(new Number(true, iterator.next()));
+        while (iterator.hasNext()) {
+            numbers.add(new Number(false, iterator.next()));
         }
     }
 

@@ -24,6 +24,6 @@ public class NumberViewer {
             lottoNumbers.append(numbers.get(i).getNumber()).append(" ");
         }
 
-        System.out.println("[ AnswerNumber ] " + lottoNumbers+"\n");
+        System.out.println("[ AnswerNumber ] " + lottoNumbers + "\n");
     }
 }

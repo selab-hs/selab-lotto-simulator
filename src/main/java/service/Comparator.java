@@ -27,7 +27,6 @@ public class Comparator {
             }
             i++;
         }
-        System.out.println(matchCount);
         return rankCalculation(isBonusNumberCounted, matchCount);
     }
 
@@ -35,14 +34,14 @@ public class Comparator {
         return randomNumber == lottoNumber;
     }
 
-    private int rankCalculation(boolean bonusNumber, int matchCount){
-        if(bonusNumber){
+    private int rankCalculation(boolean bonusNumber, int matchCount) {
+        if (bonusNumber) {
             return matchBonusNumber(matchCount);
         }
         return nonMatchBonusNumber(matchCount);
     }
 
-    private int matchBonusNumber(int matchCount){
+    private int matchBonusNumber(int matchCount) {
         switch (matchCount) {
             case 6 -> {
                 return 2;
@@ -62,7 +61,7 @@ public class Comparator {
         }
     }
 
-    private int nonMatchBonusNumber(int matchCount){
+    private int nonMatchBonusNumber(int matchCount) {
         switch (matchCount) {
             case 6 -> {
                 return 1;

@@ -1,7 +1,18 @@
 public class LottoSimulator {
-    StartScreen startScreen = new StartScreen();
-    int menuNumber = Input.getInputValue();
+    public LottoSimulator(){
+        while(true){
+            StartScreen startScreen = new StartScreen();
+            checkInputNumber(Input.getInputValue());
+        }
+    }
 
+    public void checkInputNumber(int inputValue){
+        if(inputValue == 1) {
+            Simulator simulator = new Simulator();
+        } else {
+            ExitScreen exitSimulator = new ExitScreen();
+        }
+    }
 
 }
 

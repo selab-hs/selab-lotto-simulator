@@ -7,6 +7,12 @@ public class Input {
         return isValidInput(scanner.nextInt());
     }
 
+    public static int getSimulatorInput(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("시뮬레이션 할 복권 수를 입력하시오> ");
+        return isValidInput(scanner.nextInt());
+    }
+
     public static int isValidInput(int value) {
         try {
             if (!Pattern.matches("^\\d$",  Integer.toString(value)))

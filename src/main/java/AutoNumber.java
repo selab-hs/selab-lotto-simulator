@@ -3,11 +3,10 @@ import java.util.Random;
 
 public class AutoNumber {
     private static final int RANDOM_VALUE_SIZE = 6;
-
+    final String autoNumber = createRandomNumbers();
+    final String autoNumberResult = autoNumber + " + " + createBonusNumber(autoNumber);
     public AutoNumber() {
         System.out.println("*********** 당첨 번호 ***********");
-        final String autoNumber = createRandomNumbers();
-        final String autoNumberResult = autoNumber + " + " + createBonusNumber(autoNumber);
         printAutoNumber(autoNumberResult);
     }
 

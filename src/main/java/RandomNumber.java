@@ -3,58 +3,57 @@ import java.util.Random;
 
 public class RandomNumber {
     private static final int RANDOM_VALUE_SIZE = 6;
-    public RandomNumber(int inputValue){
+    private static final Random random = new Random();
+
+    public RandomNumber(int inputValue) {
         System.out.println("********* 자동 생성 번호 *********");
-        for (int i = 0; i < inputValue; i++) {
-            String randomNumber = createRandomNumbers();
-            PrintRandomNumbers(randomNumber);
+        String[] randomNumbers = createRandomNumbers(inputValue);
+        printRandomNumbers(randomNumbers);
+    }
+
+    private void printRandomNumbers(String[] randomNumbers) {
+        for (String number : randomNumbers) {
+            System.out.println(number);
         }
     }
 
-    private void PrintRandomNumbers(String randomNumber) {
-        System.out.println(sortRandomValue(randomNumber));
-    }
+    private static String[] createRandomNumbers(int inputValue) {
+        String[] randomNumbers = new String[inputValue];
+        for (int j = 0; j < inputValue; j++) {
+            int[] generatedNumbers = generateRandomNumbers();
+            Arrays.sort(generatedNumbers);
 
-    private static String sortRandomValue(String randomValue) {
-        String[] digitsArray = randomValue.split(" ");
-        Arrays.sort(digitsArray);
-
-        StringBuilder sortedValue = new StringBuilder();
-        for (String digit : digitsArray) {
-            sortedValue.append(digit).append(" ");
+            StringBuilder randomValue = new StringBuilder();
+            for (int number : generatedNumbers) {
+                randomValue.append(number).append(" ");
+            }
+            randomNumbers[j] = randomValue.toString().trim();
         }
-        return sortedValue.toString().trim();
+        return randomNumbers;
     }
 
-    private static String createRandomNumbers() {
-        // 4 10 14 15 24 34 -> 낙점
+    private static int[] generateRandomNumbers() {
         int[] randomNumbers = new int[RANDOM_VALUE_SIZE];
         for (int i = 0; i < RANDOM_VALUE_SIZE; i++) {
-            randomNumbers[i] = generateRandomNumber(randomNumbers);
+            randomNumbers[i] = generateRandomNumber(randomNumbers, i);
         }
-        Arrays.sort(randomNumbers);
-        StringBuilder randomValue = new StringBuilder();
-        for (int number : randomNumbers) {
-            randomValue.append(number).append(" ");
-        }
-        return randomValue.toString().trim();
+        return randomNumbers;
     }
 
-    private static int generateRandomNumber(int[] randomNumbers) {
-        Random random = new Random();
+    private static int generateRandomNumber(int[] randomNumbers, int currentIndex) {
         int digit;
         while (true) {
             digit = random.nextInt(45) + 1;
-            if (!hasDuplicateDigit(randomNumbers, digit)) {
+            if (!hasDuplicateDigit(randomNumbers, digit, currentIndex)) {
                 break;
             }
         }
         return digit;
     }
 
-    public static boolean hasDuplicateDigit(int[] usedDigits, int digit) {
-        for (int usedDigit : usedDigits) {
-            if (usedDigit == digit) {
+    private static boolean hasDuplicateDigit(int[] usedDigits, int digit, int currentIndex) {
+        for (int i = 0; i < currentIndex; i++) {
+            if (usedDigits[i] == digit) {
                 return true;
             }
         }

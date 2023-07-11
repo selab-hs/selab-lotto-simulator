@@ -6,8 +6,8 @@ public class AutoNumber {
 
     public AutoNumber() {
         System.out.println("*********** 당첨 번호 ***********");
-        final String autoNumber = sortRandomValue(createRandomNumbers());
-        String autoNumberResult = autoNumber + " + " + createBonusNumber(autoNumber);
+        final String autoNumber = createRandomNumbers();
+        final String autoNumberResult = autoNumber + " + " + createBonusNumber(autoNumber);
         printAutoNumber(autoNumberResult);
     }
 
@@ -25,19 +25,7 @@ public class AutoNumber {
         System.out.println(autoNumberResult);
     }
 
-    private static String sortRandomValue(String randomValue) {
-        String[] digitsArray = randomValue.split(" ");
-        Arrays.sort(digitsArray);
-
-        StringBuilder sortedValue = new StringBuilder();
-        for (String digit : digitsArray) {
-            sortedValue.append(digit).append(" ");
-        }
-        return sortedValue.toString().trim();
-    }
-
     private static String createRandomNumbers() {
-        // 4 10 14 15 24 34 + 43
         int[] randomNumbers = new int[RANDOM_VALUE_SIZE];
         for (int i = 0; i < RANDOM_VALUE_SIZE; i++) {
             randomNumbers[i] = generateRandomNumber(randomNumbers);

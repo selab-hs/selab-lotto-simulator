@@ -1,9 +1,7 @@
 public class Simulator {
     public Simulator() {
         int inputValue = Input.getSimulatorInput();
-        AutoNumber autoNumber = new AutoNumber();
         RandomNumber randomNumber = new RandomNumber(inputValue);
-
     }
 }
 /*

@@ -16,8 +16,8 @@ public class RandomNumber {
         CompareNumber compareNumber = new CompareNumber();
         for (String number : randomNumbers) {
             //이 부분에 비교 하여 등수 책정
-            CompareNumber.compareNumber(randomNumbers, autoNumber.autoNumberResult);
-            System.out.println(number);
+            String rank = CompareNumber.compareNumber(number, autoNumber.autoNumberResult);
+            System.out.println(number + "  -> " + rank);
         }
     }
 

@@ -4,30 +4,32 @@ import model.Number;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Queue;
 import java.util.Set;
 
 public class Comparator {
+    private int matchCount = 0;
+    private boolean isBonusNumberCounted = false;
+
     public int compare(Set<Integer> randomNumber, List<Number> lottoNumber) {
-        int matchCount = 0;
-        boolean isBonusNumberCounted = false;
-        int i = 0;
 
-        Iterator<Integer> iterator = randomNumber.iterator();
-        while (iterator.hasNext()) {
-            Number number = lottoNumber.get(i);
-            boolean correct = isSameNumber(iterator.next(), number.getNumber());
-            boolean isBonusNumber = number.isBonusNumber();
+        Iterator<Integer> iter = randomNumber.iterator();
 
-            if (correct && isBonusNumber) {
-                matchCount++;
-                isBonusNumberCounted = true;
-            } else if (correct) {
-                matchCount++;
-            }
-            i++;
+        for (Number number : lottoNumber) {
+            compareSinglePart(number, iter.next());
         }
+
         return rankCalculation(isBonusNumberCounted, matchCount);
+    }
+
+    private void compareSinglePart(Number number, Integer randomNumber) {
+        boolean correct = isSameNumber(randomNumber, number.getNumber());
+
+        if (correct && number.isBonusNumber()) {
+            this.matchCount++;
+            this.isBonusNumberCounted = true;
+        } else if (correct) {
+            this.matchCount++;
+        }
     }
 
     private boolean isSameNumber(int randomNumber, int lottoNumber) {

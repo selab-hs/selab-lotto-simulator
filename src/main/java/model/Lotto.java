@@ -3,11 +3,18 @@ package model;
 import java.util.*;
 
 public class Lotto {
-    private List<Number> numbers = new LinkedList<>();
+    private final List<Number> numbers = new LinkedList<>();
 
     public Lotto() {
+        makeNonDuplicateNumbersWhenStart();
+    }
+
+    private void makeNonDuplicateNumbersWhenStart(){
         Set<Integer> nonDuplicateNumber = createNonDuplicateNumbers();
-        Iterator<Integer> iterator = nonDuplicateNumber.iterator();
+        addToLotto(nonDuplicateNumber.iterator());
+    }
+
+    private void addToLotto(Iterator<Integer> iterator){
         numbers.add(new Number(true, iterator.next()));
         while (iterator.hasNext()) {
             numbers.add(new Number(false, iterator.next()));

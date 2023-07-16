@@ -1,8 +1,8 @@
 package model;
 
 public class Number {
-    private boolean isBonusNumber;
-    private int number;
+    private final boolean isBonusNumber;
+    private final int number;
 
     public Number(boolean isBonusNumber, int number) {
         this.isBonusNumber = isBonusNumber;

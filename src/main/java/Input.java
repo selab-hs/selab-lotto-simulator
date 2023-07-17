@@ -17,7 +17,7 @@ public class Input {
         try {
             String str = String.valueOf(inputNum);
             if (!Pattern.matches("^[0-9]{1,2}$", str))
-                throw new NumberFormatException("입력된 숫자가 3자리 숫자를 넘겼어요.");
+                throw new NumberFormatException("입력된 숫자가 2자리 숫자를 넘겼어요.(최대 99)");
         } catch (NumberFormatException e) {
             System.err.println("NumberFormatException : " + e.getMessage());
             System.exit(0);

@@ -1,7 +1,7 @@
 public class LottoSimulator {
     public LottoSimulator(){
         while(true){
-            StartScreen startScreen = new StartScreen();
+            Output.startScreen();
             checkInputNumber(Input.getInputValue());
         }
     }

@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class RandomNumber {
@@ -7,24 +9,24 @@ public class RandomNumber {
 
     public RandomNumber(int inputValue) {
         AutoNumber autoNumber = new AutoNumber();
-        System.out.println("********* 자동 생성 번호 *********");
-        String[] randomNumbers = createRandomNumbers(inputValue);
+        List<String> randomNumbers = createRandomNumbers(inputValue);
+
         printRandomNumbers(randomNumbers, autoNumber);
     }
 
-    private void printRandomNumbers(String[] randomNumbers, AutoNumber autoNumber) {
+    private void printRandomNumbers(List<String> randomNumbers, AutoNumber autoNumber) {
         CompareNumber compareNumber = new CompareNumber();
+
+        Output.randomNumberScreen();
         for (String number : randomNumbers) {
-            //이 부분에 비교 하여 등수 책정
+            // 이 부분에 비교하여 등수 책정
             String rank = CompareNumber.compareNumber(number, autoNumber.autoNumberResult);
-            System.out.println(number + "  -> " + rank);
+            Output.printRandomNumbers(number + "  -> " + rank);
         }
     }
 
-
-
-    private static String[] createRandomNumbers(int inputValue) {
-        String[] randomNumbers = new String[inputValue];
+    private static List<String> createRandomNumbers(int inputValue) {
+        List<String> randomNumbers = new ArrayList<>();
         for (int j = 0; j < inputValue; j++) {
             int[] generatedNumbers = generateRandomNumbers();
             Arrays.sort(generatedNumbers);
@@ -33,7 +35,7 @@ public class RandomNumber {
             for (int number : generatedNumbers) {
                 randomValue.append(number).append(" ");
             }
-            randomNumbers[j] = randomValue.toString().trim();
+            randomNumbers.add(randomValue.toString().trim());
         }
         return randomNumbers;
     }

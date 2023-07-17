@@ -1,43 +1,46 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class AutoNumber {
     private static final int RANDOM_VALUE_SIZE = 6;
-    final String autoNumber = createRandomNumbers();
-    final String autoNumberResult = autoNumber + " + " + createBonusNumber(autoNumber);
+    final List<Integer> autoNumber = createRandomNumbers();
+    final List<String> autoNumberResult = createAutoNumberResult(autoNumber);
+
     public AutoNumber() {
-        System.out.println("*********** 당첨 번호 ***********");
-        printAutoNumber(autoNumberResult);
+        Output.autoNumberScreen(autoNumberResult);
     }
 
-    private String createBonusNumber(String randomValue) {
+    private List<String> createAutoNumberResult(List<Integer> randomValue) {
+        List<String> result = new ArrayList<>();
+        for (Integer number : randomValue) {
+            result.add(number.toString());
+        }
+        result.add("+");
+        result.add(createBonusNumber(randomValue));
+        return result;
+    }
+
+    private String createBonusNumber(List<Integer> randomValue) {
         Random random = new Random();
 
         while (true) {
             String digit = Integer.toString(random.nextInt(45) + 1);
-            if (!hasDuplicateDigit(randomValue, digit))
+            if (!hasDuplicateDigit(randomValue, Integer.parseInt(digit)))
                 return digit;
         }
     }
 
-    private void printAutoNumber(String autoNumberResult) {
-        System.out.println(autoNumberResult);
-    }
-
-    private static String createRandomNumbers() {
-        int[] randomNumbers = new int[RANDOM_VALUE_SIZE];
+    private static List<Integer> createRandomNumbers() {
+        List<Integer> randomNumbers = new ArrayList<>();
         for (int i = 0; i < RANDOM_VALUE_SIZE; i++) {
-            randomNumbers[i] = generateRandomNumber(randomNumbers);
+            randomNumbers.add(generateRandomNumber(randomNumbers));
         }
-        Arrays.sort(randomNumbers);
-        StringBuilder randomValue = new StringBuilder();
-        for (int number : randomNumbers) {
-            randomValue.append(number).append(" ");
-        }
-        return randomValue.toString().trim();
+        randomNumbers.sort(Integer::compareTo);
+        return randomNumbers;
     }
 
-    private static int generateRandomNumber(int[] randomNumbers) {
+    private static int generateRandomNumber(List<Integer> randomNumbers) {
         Random random = new Random();
         int digit;
         while (true) {
@@ -49,22 +52,7 @@ public class AutoNumber {
         return digit;
     }
 
-    public static boolean hasDuplicateDigit(String usedDigits, String digit) {
-        String[] digitsArray = usedDigits.split(" ");
-        for (String usedDigit : digitsArray) {
-            if (usedDigit.equals(digit)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean hasDuplicateDigit(int[] usedDigits, int digit) {
-        for (int usedDigit : usedDigits) {
-            if (usedDigit == digit) {
-                return true;
-            }
-        }
-        return false;
+    public static boolean hasDuplicateDigit(List<Integer> usedDigits, int digit) {
+        return usedDigits.contains(digit);
     }
 }

@@ -21,7 +21,7 @@ public class RandomNumber {
         for (String number : randomNumbers) {
             // 이 부분에 비교하여 등수 책정
             String rank = CompareNumber.compareNumber(number, autoNumber.autoNumberResult);
-            Output.printRandomNumbers(number + "  -> " + rank);
+            Output.printRandomNumbers(number, rank);
         }
     }
 

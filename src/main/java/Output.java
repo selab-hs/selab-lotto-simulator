@@ -23,8 +23,9 @@ public class Output {
 
     }
 
-    public static void printRandomNumbers(String randomNumberResult) {
+    public static void printRandomNumbers(String number, String rank) {
         //String.join(",",autoNumberResult)
+        String randomNumberResult = number + "  -> " + rank;
         System.out.println(randomNumberResult);
     }
 }

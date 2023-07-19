@@ -2,34 +2,33 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CompareNumber {
-    private static final String[] RANKS = {"낙첨", "낙첨","낙첨", "5등", "4등", "3등"};
+    private static final String[] RANKS = {"낙첨", "낙첨", "낙첨", "5등", "4등", "3등"};
 
     public static String compareNumber(String randomNumber, List<String> autoNumberResult) {
+        return checkRank(randomNumber.split(" "), ListToString(autoNumberResult));
+    }
+
+    private static String checkRank(String[] numbers, String autoNumber) {
         int matchCount = 0;
         boolean hasBonus = false;
-        String autoNumber = ListToString(autoNumberResult);
         int index = autoNumber.indexOf("+");
         int bonusNumber = Integer.parseInt(autoNumber.substring(index + 2));
         String[] prevNumber = getPrevNumber(autoNumber);
-        String[] numbers = randomNumber.split(" ");
 
         for (String number : numbers) {
             int currentNumber = Integer.parseInt(number.trim());
             hasBonus = checkBonus(bonusNumber, currentNumber);
             matchCount = checkMatch(prevNumber, currentNumber, matchCount);
         }
-
-        String rank = checkRank(matchCount,hasBonus);
-        System.out.println("맞은 갯수: " + matchCount);
-        return rank;
+        return setRank(matchCount, hasBonus);
     }
 
-    private static String checkRank(int matchCount, boolean hasBonus) {
+    private static String setRank(int matchCount, boolean hasBonus) {
         String rank = RANKS[matchCount];
         if (matchCount == 4 && hasBonus) {
             rank = "2등";
         }
-        if(matchCount == 5){
+        if (matchCount == 5) {
             rank = "1등";
         }
         return rank;
@@ -52,14 +51,14 @@ public class CompareNumber {
     }
 
     private static int checkMatch(String[] autoNumbers, int currentNumber, int matchCount) {
-            for (String number : autoNumbers) {
-                int winningNumber = Integer.parseInt(number.trim());
-                //System.out.println("당첨 번호 : " + winningNumber + ", 내 번호 : " + currentNumber);
-                if (currentNumber == winningNumber) {
-                    matchCount++;
-                    break;
-                }
+        for (String number : autoNumbers) {
+            int winningNumber = Integer.parseInt(number.trim());
+            //System.out.println("당첨 번호 : " + winningNumber + ", 내 번호 : " + currentNumber);
+            if (currentNumber == winningNumber) {
+                matchCount++;
+                break;
             }
+        }
         return matchCount;
     }
 

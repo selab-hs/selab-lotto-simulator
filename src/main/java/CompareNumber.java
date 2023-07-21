@@ -20,6 +20,7 @@ public class CompareNumber {
             hasBonus = checkBonus(bonusNumber, currentNumber);
             matchCount = checkMatch(prevNumber, currentNumber, matchCount);
         }
+        Output.setRankResult(matchCount, hasBonus);
         return setRank(matchCount, hasBonus);
     }
 

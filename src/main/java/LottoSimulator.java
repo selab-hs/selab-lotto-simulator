@@ -10,7 +10,7 @@ public class LottoSimulator {
         if(inputValue == 1) {
             Simulator simulator = new Simulator();
         } else {
-            ExitScreen exitSimulator = new ExitScreen();
+            Output.ExitScreen();
         }
     }
 

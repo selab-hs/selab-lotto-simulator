@@ -54,7 +54,6 @@ public class CompareNumber {
     private static int checkMatch(String[] autoNumbers, int currentNumber, int matchCount) {
         for (String number : autoNumbers) {
             int winningNumber = Integer.parseInt(number.trim());
-            //System.out.println("당첨 번호 : " + winningNumber + ", 내 번호 : " + currentNumber);
             if (currentNumber == winningNumber) {
                 matchCount++;
                 break;

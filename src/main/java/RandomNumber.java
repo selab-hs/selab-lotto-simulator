@@ -27,17 +27,24 @@ public class RandomNumber {
 
     private static List<String> createRandomNumbers(int inputValue) {
         List<String> randomNumbers = new ArrayList<>();
+        getRandomNumbers(randomNumbers,inputValue);
+        return randomNumbers;
+    }
+
+    private static void getRandomNumbers(List<String> randomNumbers, int inputValue) {
         for (int j = 0; j < inputValue; j++) {
             int[] generatedNumbers = generateRandomNumbers();
             Arrays.sort(generatedNumbers);
-
             StringBuilder randomValue = new StringBuilder();
-            for (int number : generatedNumbers) {
-                randomValue.append(number).append(" ");
-            }
+            appendValue(randomValue,generatedNumbers);
             randomNumbers.add(randomValue.toString().trim());
         }
-        return randomNumbers;
+    }
+
+    private static void appendValue(StringBuilder randomValue, int[] generatedNumbers) {
+        for (int number : generatedNumbers) {
+            randomValue.append(number).append(" ");
+        }
     }
 
     private static int[] generateRandomNumbers() {

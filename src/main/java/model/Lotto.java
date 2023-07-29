@@ -1,32 +1,12 @@
 package model;
 
-import java.util.*;
+import java.util.List;
 
 public class Lotto {
-    private final List<Number> numbers = new LinkedList<>();
+    private final List<Number> numbers;
 
-    public Lotto() {
-        makeNonDuplicateNumbersWhenStart();
-    }
-
-    private void makeNonDuplicateNumbersWhenStart(){
-        Set<Integer> nonDuplicateNumber = createNonDuplicateNumbers();
-        addToLotto(nonDuplicateNumber.iterator());
-    }
-
-    private void addToLotto(Iterator<Integer> iterator){
-        numbers.add(new Number(true, iterator.next()));
-        while (iterator.hasNext()) {
-            numbers.add(new Number(false, iterator.next()));
-        }
-    }
-
-    private Set<Integer> createNonDuplicateNumbers() {
-        Set<Integer> nonDuplicateNumbers = new HashSet<>();
-        while (nonDuplicateNumbers.size() <= 6) {
-            nonDuplicateNumbers.add((int) (Math.random() * 45) + 1);
-        }
-        return nonDuplicateNumbers;
+    public Lotto(List<Number> numbers) {
+        this.numbers = numbers;
     }
 
     public List<Number> getNumbers() {

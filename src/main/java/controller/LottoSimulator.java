@@ -12,9 +12,7 @@ import java.util.Set;
 
 public class LottoSimulator {
     public void simulatorStart() {
-        Lotto lotto = new Lotto(
-                new LottoNumberGenerator().makeNonDuplicateNumbersWhenStart()
-        );
+        Lotto lotto = new LottoNumberGenerator().makeNonDuplicateNumbersWhenStart();
 
         NumberViewer numberViewer = new NumberViewer();
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();

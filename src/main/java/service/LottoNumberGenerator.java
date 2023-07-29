@@ -1,14 +1,15 @@
 package service;
 
+import model.Lotto;
 import model.Number;
 
 import java.util.*;
 
 public class LottoNumberGenerator {
 
-    public List<Number> makeNonDuplicateNumbersWhenStart(){
+    public Lotto makeNonDuplicateNumbersWhenStart(){
         Set<Integer> nonDuplicateNumber = createNonDuplicateNumbers();
-        return makeLotto(nonDuplicateNumber.iterator());
+        return new Lotto(makeLotto(nonDuplicateNumber.iterator()));
     }
 
     private List<Number> makeLotto(Iterator<Integer> iterator){

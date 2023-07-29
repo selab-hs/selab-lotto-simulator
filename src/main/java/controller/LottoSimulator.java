@@ -1,6 +1,7 @@
 package controller;
 
 import model.Lotto;
+import service.LottoNumberGenerator;
 import service.Comparator;
 import service.Input;
 import service.RandomNumberGenerator;
@@ -11,7 +12,10 @@ import java.util.Set;
 
 public class LottoSimulator {
     public void simulatorStart() {
-        Lotto lotto = new Lotto();
+        Lotto lotto = new Lotto(
+                new LottoNumberGenerator().makeNonDuplicateNumbersWhenStart()
+        );
+
         NumberViewer numberViewer = new NumberViewer();
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         ResultViewer resultViewer = new ResultViewer();

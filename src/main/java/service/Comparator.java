@@ -25,15 +25,16 @@ public class Comparator {
         boolean correct = isSameNumber(randomNumber, number.getNumber());
 
         if (correct && number.isBonusNumber()) {
-            this.matchCount++;
             this.isBonusNumberCounted = true;
-        } else if (correct) {
-            this.matchCount++;
         }
     }
 
     private boolean isSameNumber(int randomNumber, int lottoNumber) {
-        return randomNumber == lottoNumber;
+        if(randomNumber == lottoNumber){
+            this.matchCount++;
+            return true;
+        }
+        return false;
     }
 
     private int rankCalculation(boolean bonusNumber, int matchCount) {

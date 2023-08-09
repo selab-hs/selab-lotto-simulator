@@ -2,18 +2,12 @@ public class LottoSimulator {
     public LottoSimulator(){
         while(true){
             Output.startScreen();
-            checkInputNumber(Input.getInputValue());
+            if(Input.getInputValue() != 1){
+                Output.ExitScreen();
+            }
+            RandomNumber randomNumber = new RandomNumber(Input.getSimulatorInput());
         }
     }
-
-    public void checkInputNumber(int inputValue){
-        if(inputValue == 1) {
-            Simulator simulator = new Simulator();
-        } else {
-            Output.ExitScreen();
-        }
-    }
-
 }
 
 /*

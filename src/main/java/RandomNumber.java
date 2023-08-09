@@ -10,7 +10,6 @@ public class RandomNumber {
     public RandomNumber(int inputValue) {
         AutoNumber autoNumber = new AutoNumber();
         List<String> randomNumbers = createRandomNumbers(inputValue);
-
         printRandomNumbers(randomNumbers, autoNumber);
     }
 
@@ -20,7 +19,7 @@ public class RandomNumber {
         Output.randomNumberScreen();
         for (String number : randomNumbers) {
             // 이 부분에 비교하여 등수 책정
-            String rank = CompareNumber.compareNumber(number, autoNumber.autoNumberResult);
+            String rank = CompareNumber.compareNumber(number, autoNumber.getAutoNumberResult());
             Output.printRandomNumbers(number, rank);
         }
     }

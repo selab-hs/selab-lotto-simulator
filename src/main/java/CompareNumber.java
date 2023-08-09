@@ -5,12 +5,16 @@ public class CompareNumber {
     private static final String[] RANKS = {"낙첨", "낙첨", "낙첨", "5등", "4등", "3등"};
 
     public static String compareNumber(String randomNumber, List<String> autoNumberResult) {
-        return checkRank(randomNumber.split(" "), ListToString(autoNumberResult));
-    }
-
-    private static String checkRank(String[] numbers, String autoNumber) {
         int matchCount = 0;
         boolean hasBonus = false;
+        checkRank(randomNumber.split(" "), ListToString(autoNumberResult), matchCount, hasBonus);
+        Output.setRankResult(matchCount, hasBonus);
+        return setRank(matchCount, hasBonus);
+
+    }
+
+    private static void checkRank(String[] numbers, String autoNumber, int matchCount, boolean hasBonus) {
+
         int index = autoNumber.indexOf("+");
         int bonusNumber = Integer.parseInt(autoNumber.substring(index + 2));
         String[] prevNumber = getPrevNumber(autoNumber);
@@ -20,8 +24,6 @@ public class CompareNumber {
             hasBonus = checkBonus(bonusNumber, currentNumber);
             matchCount = checkMatch(prevNumber, currentNumber, matchCount);
         }
-        Output.setRankResult(matchCount, hasBonus);
-        return setRank(matchCount, hasBonus);
     }
 
     private static String setRank(int matchCount, boolean hasBonus) {

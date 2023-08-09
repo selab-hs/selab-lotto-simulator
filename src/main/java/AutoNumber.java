@@ -4,11 +4,15 @@ import java.util.Random;
 
 public class AutoNumber {
     private static final int RANDOM_VALUE_SIZE = 6;
-    final List<Integer> autoNumber = createRandomNumbers();
-    final List<String> autoNumberResult = createAutoNumberResult(autoNumber);
+    private final List<Integer> autoNumber = createRandomNumbers();
+    private final List<String> autoNumberResult = createAutoNumberResult(autoNumber);
 
     public AutoNumber() {
         Output.autoNumberScreen(autoNumberResult);
+    }
+
+    protected List<String> getAutoNumberResult() {
+        return autoNumberResult;
     }
 
     private List<String> createAutoNumberResult(List<Integer> randomValue) {

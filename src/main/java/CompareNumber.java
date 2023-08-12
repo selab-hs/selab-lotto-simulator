@@ -9,7 +9,9 @@ public class CompareNumber {
         boolean hasBonus = false;
         checkRank(randomNumber.split(" "), ListToString(autoNumberResult), matchCount, hasBonus);
         Output.setRankResult(matchCount, hasBonus);
-        return setRank(matchCount, hasBonus);
+        Rank rank = setRank(matchCount, hasBonus);
+
+        return rank.getDisplayName();
 
     }
 
@@ -26,15 +28,11 @@ public class CompareNumber {
         }
     }
 
-    private static String setRank(int matchCount, boolean hasBonus) {
-        String rank = RANKS[matchCount];
-        if (matchCount == 4 && hasBonus) {
-            rank = "2등";
-        }
-        if (matchCount == 5) {
-            rank = "1등";
-        }
-        return rank;
+    private static Rank setRank(int matchCount, boolean hasBonus) {
+       return Arrays.stream(Rank.values())
+                .filter(r -> r.getMatchingNumbers() == matchCount && r.getBonusNumbers() == hasBonus)
+                .findFirst()
+                .orElse(Rank.LOSER);
     }
 
     private static String[] getPrevNumber(String autoNumber) {

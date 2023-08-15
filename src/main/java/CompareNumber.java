@@ -2,20 +2,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CompareNumber {
-    private static final String[] RANKS = {"낙첨", "낙첨", "낙첨", "5등", "4등", "3등"};
-
+    private static int matchCount;
+    private static boolean hasBonus;
     public static String compareNumber(String randomNumber, List<String> autoNumberResult) {
-        int matchCount = 0;
-        boolean hasBonus = false;
-        checkRank(randomNumber.split(" "), ListToString(autoNumberResult), matchCount, hasBonus);
-        Output.setRankResult(matchCount, hasBonus);
+        matchCount = 0;
+        hasBonus = false;
+        checkRank(randomNumber.split(" "), ListToString(autoNumberResult));
+        Rank.setRankResult(matchCount, hasBonus);
         Rank rank = setRank(matchCount, hasBonus);
-
         return rank.getDisplayName();
-
     }
-
-    private static void checkRank(String[] numbers, String autoNumber, int matchCount, boolean hasBonus) {
+    private static void checkRank(String[] numbers, String autoNumber) {
 
         int index = autoNumber.indexOf("+");
         int bonusNumber = Integer.parseInt(autoNumber.substring(index + 2));
@@ -24,7 +21,7 @@ public class CompareNumber {
         for (String number : numbers) {
             int currentNumber = Integer.parseInt(number.trim());
             hasBonus = checkBonus(bonusNumber, currentNumber);
-            matchCount = checkMatch(prevNumber, currentNumber, matchCount);
+            matchCount += checkMatch(prevNumber, currentNumber);
         }
     }
 
@@ -51,15 +48,14 @@ public class CompareNumber {
         return sb.toString().trim();
     }
 
-    private static int checkMatch(String[] autoNumbers, int currentNumber, int matchCount) {
-        for (String number : autoNumbers) {
-            int winningNumber = Integer.parseInt(number.trim());
-            if (currentNumber == winningNumber) {
-                matchCount++;
-                break;
-            }
-        }
-        return matchCount;
+    private static int checkMatch(String[] autoNumbers, int currentNumber) {
+        long matchCount = Arrays.stream(autoNumbers)
+                .map(String::trim)
+                .mapToInt(Integer::parseInt)
+                .filter(winningNumber -> winningNumber == currentNumber)
+                .count();
+
+        return (int) matchCount;
     }
 
     private static boolean checkBonus(int bonusNumber, int currentNumber) {

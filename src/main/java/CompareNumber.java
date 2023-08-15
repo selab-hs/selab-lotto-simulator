@@ -16,7 +16,7 @@ public class CompareNumber {
 
         int index = autoNumber.indexOf("+");
         int bonusNumber = Integer.parseInt(autoNumber.substring(index + 2));
-        String[] prevNumber = getPrevNumber(autoNumber);
+        List<String> prevNumber = getPrevNumber(autoNumber);
 
         for (String number : numbers) {
             int currentNumber = Integer.parseInt(number.trim());
@@ -32,11 +32,11 @@ public class CompareNumber {
                 .orElse(Rank.LOSER);
     }
 
-    private static String[] getPrevNumber(String autoNumber) {
+    public static List<String> getPrevNumber(String autoNumber) {
         String[] index1 = autoNumber.split("\\+");
         String[] index2 = index1[0].split(" ");
-
-        return index2;
+        List<String> index2List = Arrays.asList(index2);
+        return index2List;
     }
 
     private static String ListToString(List<String> autoNumberResult) {
@@ -48,8 +48,8 @@ public class CompareNumber {
         return sb.toString().trim();
     }
 
-    private static int checkMatch(String[] autoNumbers, int currentNumber) {
-        long matchCount = Arrays.stream(autoNumbers)
+    private static int checkMatch(List<String> autoNumbers, int currentNumber) {
+        long matchCount = autoNumbers.stream()
                 .map(String::trim)
                 .mapToInt(Integer::parseInt)
                 .filter(winningNumber -> winningNumber == currentNumber)

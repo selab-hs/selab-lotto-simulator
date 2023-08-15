@@ -3,7 +3,7 @@ public class LottoSimulator {
         while(true){
             Output.startScreen();
             if(Input.getInputValue() != 1){
-                Output.ExitScreen();
+                Output.exitScreen();
             }
             RandomNumber randomNumber = new RandomNumber(Input.getSimulatorInput());
         }

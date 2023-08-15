@@ -7,13 +7,13 @@ public class CompareNumber {
     public static String compareNumber(String randomNumber, List<String> autoNumberResult) {
         matchCount = 0;
         hasBonus = false;
-        checkRank(randomNumber.split(" "), ListToString(autoNumberResult));
+        String[] randomNumberArray = randomNumber.split(" ");
+        checkRank(Arrays.asList(randomNumberArray), ListToString(autoNumberResult));
         Rank.setRankResult(matchCount, hasBonus);
         Rank rank = setRank(matchCount, hasBonus);
         return rank.getDisplayName();
     }
-    private static void checkRank(String[] numbers, String autoNumber) {
-
+    public static void checkRank(List<String> numbers, String autoNumber) {
         int index = autoNumber.indexOf("+");
         int bonusNumber = Integer.parseInt(autoNumber.substring(index + 2));
         List<String> prevNumber = getPrevNumber(autoNumber);

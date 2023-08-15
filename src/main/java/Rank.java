@@ -9,11 +9,36 @@ public enum Rank {
     private final int matchingNumbers;
     private final boolean hasBonus;
     private final String displayName;
-
+    static int[] ranks = new int[6];
     Rank(int matchingNumbers, boolean hasBonus, String displayName) {
         this.matchingNumbers = matchingNumbers;
         this.hasBonus = hasBonus;
         this.displayName = displayName;
+    }
+
+    public static void setRankResult(int matchCount, boolean hasBonus) {
+        System.out.println("matchCount : " + matchCount);
+        switch (matchCount) {
+            case 6:
+                ranks[0]++; // 1등
+                break;
+            case 5:
+                if (hasBonus) {
+                    ranks[1]++; // 2등
+                } else {
+                    ranks[2]++; // 3등
+                }
+                break;
+            case 4:
+                ranks[3]++; // 4등
+                break;
+            case 3:
+                ranks[4]++; // 5등
+                break;
+            default:
+                ranks[5]++; // 낙첨
+                break;
+        }
     }
 
     public int getMatchingNumbers() {

@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public enum Rank {
     FIRST(6, false, "1등"),     // 1등: 6개 일치
     SECOND(5, true, "2등"), // 2등: 5개 일치 + 보너스 번호 1개 일치
@@ -9,7 +13,7 @@ public enum Rank {
     private final int matchingNumbers;
     private final boolean hasBonus;
     private final String displayName;
-    static int[] ranks = new int[6];
+    static List<Integer> ranks = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0));
     Rank(int matchingNumbers, boolean hasBonus, String displayName) {
         this.matchingNumbers = matchingNumbers;
         this.hasBonus = hasBonus;
@@ -17,29 +21,30 @@ public enum Rank {
     }
 
     public static void setRankResult(int matchCount, boolean hasBonus) {
-        System.out.println("matchCount : " + matchCount);
+        int rank = 5;
+
         switch (matchCount) {
             case 6:
-                ranks[0]++; // 1등
+                rank = 0; // 1등
                 break;
             case 5:
                 if (hasBonus) {
-                    ranks[1]++; // 2등
+                    rank = 1; // 2등
                 } else {
-                    ranks[2]++; // 3등
+                    rank = 2; // 3등
                 }
                 break;
             case 4:
-                ranks[3]++; // 4등
+                rank = 3; // 4등
                 break;
             case 3:
-                ranks[4]++; // 5등
-                break;
-            default:
-                ranks[5]++; // 낙첨
+                rank = 4; // 5등
                 break;
         }
+
+        ranks.set(rank, ranks.get(rank) + 1);
     }
+
 
     public int getMatchingNumbers() {
         return matchingNumbers;

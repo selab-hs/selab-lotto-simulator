@@ -8,11 +8,13 @@ public class Output {
                             "메뉴를 입력하시오> ");
     }
 
-    public static void exitScreen(){
-        for(int i = 0 ; i < Rank.ranks.length - 1; i++){
-            System.out.print((i + 1) + "등 : " + Rank.ranks[i] +", ");
+    public static void exitScreen() {
+        int totalRanks = Rank.ranks.size();
+
+        for (int i = 0; i < totalRanks - 1; i++) {
+            System.out.print((i + 1) + "등 : " + Rank.ranks.get(i) + ", ");
         }
-        System.out.println("낙첨 : " + Rank.ranks[5]);
+        System.out.println("낙첨 : " + Rank.ranks.get(5));
         System.out.println("************* END *************");
         System.exit(0);
     }

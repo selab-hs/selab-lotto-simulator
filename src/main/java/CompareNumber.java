@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CompareNumber {
     private static int matchCount;
@@ -7,8 +8,9 @@ public class CompareNumber {
     public static String compareNumber(String randomNumber, List<String> autoNumberResult) {
         matchCount = 0;
         hasBonus = false;
-        String[] randomNumberArray = randomNumber.split(" ");
-        checkRank(Arrays.asList(randomNumberArray), ListToString(autoNumberResult));
+        List<String> randomNumbers = Arrays.stream(randomNumber.split(" "))
+                .collect(Collectors.toList());
+        checkRank(randomNumbers, ListToString(autoNumberResult));
         Rank.setRankResult(matchCount, hasBonus);
         Rank rank = setRank(matchCount, hasBonus);
         return rank.getDisplayName();

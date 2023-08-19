@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -14,11 +13,8 @@ public class RandomNumber {
     }
 
     private void printRandomNumbers(List<String> randomNumbers, AutoNumber autoNumber) {
-        CompareNumber compareNumber = new CompareNumber();
-
         Output.randomNumberScreen();
         for (String number : randomNumbers) {
-            // 이 부분에 비교하여 등수 책정
             String rank = CompareNumber.compareNumber(number, autoNumber.getAutoNumberResult());
             Output.printRandomNumbers(number, rank);
         }
@@ -26,35 +22,31 @@ public class RandomNumber {
 
     private static List<String> createRandomNumbers(int inputValue) {
         List<String> randomNumbers = new ArrayList<>();
-        getRandomNumbers(randomNumbers,inputValue);
-        return randomNumbers;
-    }
-
-    private static void getRandomNumbers(List<String> randomNumbers, int inputValue) {
         for (int j = 0; j < inputValue; j++) {
-            int[] generatedNumbers = generateRandomNumbers();
-            Arrays.sort(generatedNumbers);
-            StringBuilder randomValue = new StringBuilder();
-            appendValue(randomValue,generatedNumbers);
-            randomNumbers.add(randomValue.toString().trim());
-        }
-    }
-
-    private static void appendValue(StringBuilder randomValue, int[] generatedNumbers) {
-        for (int number : generatedNumbers) {
-            randomValue.append(number).append(" ");
-        }
-    }
-
-    private static int[] generateRandomNumbers() {
-        int[] randomNumbers = new int[RANDOM_VALUE_SIZE];
-        for (int i = 0; i < RANDOM_VALUE_SIZE; i++) {
-            randomNumbers[i] = generateRandomNumber(randomNumbers, i);
+            List<Integer> generatedNumbers = generateRandomNumbers();
+            generatedNumbers.sort(Integer::compare);
+            randomNumbers.add(listToString(generatedNumbers));
         }
         return randomNumbers;
     }
 
-    private static int generateRandomNumber(int[] randomNumbers, int currentIndex) {
+    private static String listToString(List<Integer> list) {
+        StringBuilder sb = new StringBuilder();
+        for (Integer number : list) {
+            sb.append(number).append(" ");
+        }
+        return sb.toString().trim();
+    }
+
+    private static List<Integer> generateRandomNumbers() {
+        List<Integer> randomNumbers = new ArrayList<>();
+        for (int i = 0; i < RANDOM_VALUE_SIZE; i++) {
+            randomNumbers.add(generateRandomNumber(randomNumbers, i));
+        }
+        return randomNumbers;
+    }
+
+    private static int generateRandomNumber(List<Integer> randomNumbers, int currentIndex) {
         int digit;
         while (true) {
             digit = random.nextInt(45) + 1;
@@ -65,9 +57,9 @@ public class RandomNumber {
         return digit;
     }
 
-    private static boolean hasDuplicateDigit(int[] usedDigits, int digit, int currentIndex) {
+    private static boolean hasDuplicateDigit(List<Integer> usedDigits, int digit, int currentIndex) {
         for (int i = 0; i < currentIndex; i++) {
-            if (usedDigits[i] == digit) {
+            if (usedDigits.get(i) == digit) {
                 return true;
             }
         }

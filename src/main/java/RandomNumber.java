@@ -20,7 +20,7 @@ public class RandomNumber {
         }
     }
 
-    private static List<String> createRandomNumbers(int inputValue) {
+    public static List<String> createRandomNumbers(int inputValue) {
         List<String> randomNumbers = new ArrayList<>();
         for (int j = 0; j < inputValue; j++) {
             List<Integer> generatedNumbers = generateRandomNumbers();

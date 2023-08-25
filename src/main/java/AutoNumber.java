@@ -15,7 +15,7 @@ public class AutoNumber {
         return autoNumberResult;
     }
 
-    private List<String> createAutoNumberResult(List<Integer> randomValue) {
+    public static List<String> createAutoNumberResult(List<Integer> randomValue) {
         List<String> result = new ArrayList<>();
         for (Integer number : randomValue) {
             result.add(number.toString());
@@ -25,7 +25,7 @@ public class AutoNumber {
         return result;
     }
 
-    private String createBonusNumber(List<Integer> randomValue) {
+    private static String createBonusNumber(List<Integer> randomValue) {
         Random random = new Random();
 
         while (true) {
@@ -35,7 +35,7 @@ public class AutoNumber {
         }
     }
 
-    private static List<Integer> createRandomNumbers() {
+    static List<Integer> createRandomNumbers() {
         List<Integer> randomNumbers = new ArrayList<>();
         for (int i = 0; i < RANDOM_VALUE_SIZE; i++) {
             randomNumbers.add(generateRandomNumber(randomNumbers));

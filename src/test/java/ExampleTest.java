@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -48,15 +47,16 @@ public class ExampleTest {
     public void testCompareNumber() {
         // given
         List<String> randomNumber = new ArrayList<String>();
-        randomNumber.add("1 2 3 4 5 6 7");
-        String autoNumber = "1 2 3 4 5 6 7";
+        randomNumber.add("1 2 3 4 5 6 13");
+        String autoNumber = "1 3 2 5 6 9 11"; // 두개 동일
 
         // when
         CompareNumber compareNumber = new CompareNumber();
-        CompareNumber.checkRank(randomNumber, autoNumber);
+        boolean actual = CompareNumber.checkRank(randomNumber, autoNumber);
+        boolean expected = true;
 
         // then
-        //checkRank 리턴 값이 void 이기 때문에, 다른 방법을 고안해보아야 할 것 같다.
+        assertEquals(actual,expected);
     }
 
     @DisplayName("로또 번호 값이 1~45의 중복되지 않는 값을 지키는 지 확인")
@@ -70,8 +70,21 @@ public class ExampleTest {
         // when
         AutoNumber autoNumber = new AutoNumber();
         List<String> autoNumberResult = AutoNumber.createAutoNumberResult(AutoNumber.createRandomNumbers());
+
+        boolean actual = checkDuplicatedNumber(autoNumberResult);
+        boolean expected = false;
         // then
         //비교 로직 생각
+        assertEquals(actual,expected);
+    }
+
+    private boolean checkDuplicatedNumber(List<String> autoNumberResult) {
+        boolean result = false;
+        for(int i = 0 ; i < autoNumberResult.size() ; i++)
+        for(String number : autoNumberResult){
+            result = autoNumberResult.get(i).equals(number);
+        }
+        return result;
     }
 
 

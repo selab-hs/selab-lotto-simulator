@@ -15,7 +15,7 @@ public class CompareNumber {
         Rank rank = setRank(matchCount, hasBonus);
         return rank.getDisplayName();
     }
-    public static void checkRank(List<String> numbers, String autoNumber) {
+    public static boolean checkRank(List<String> numbers, String autoNumber) {
         int index = autoNumber.indexOf("+");
         int bonusNumber = Integer.parseInt(autoNumber.substring(index + 2));
         List<String> prevNumber = getPrevNumber(autoNumber);
@@ -25,6 +25,13 @@ public class CompareNumber {
             hasBonus = checkBonus(bonusNumber, currentNumber);
             matchCount += checkMatch(prevNumber, currentNumber);
         }
+        return checkRankIn(matchCount);
+    }
+
+    private static boolean checkRankIn(int matchCount) {
+        if(matchCount > 0)
+            return true;
+        else return false;
     }
 
     private static Rank setRank(int matchCount, boolean hasBonus) {
